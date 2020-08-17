@@ -32,7 +32,7 @@ if("${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
 endif()
 
 project(SuperRepo)
-add_executable("${PROJECT_NAME}" dummy.cpp)
+add_executable("${PROJECT_NAME}" BuildAll.cpp)
 add_dependencies("${PROJECT_NAME}" GenericServerAndClient MTTools CommonUtils)
 #Needed for quaified paths, for protejects which have external dependencies
 target_include_directories("${PROJECT_NAME}" PUBLIC "${CMAKE_SOURCE_DIR}")
