@@ -20,6 +20,10 @@ if(NOT TARGET MTTools)
 	execute_process(COMMAND git clone https://github.com/sumitdhyani/MTTools.git "${CMAKE_SOURCE_DIR}/MTTools")
 endif()
 
+if(NOT TARGET Logger)
+	execute_process(COMMAND git clone https://github.com/sumitdhyani/Logger.git "${CMAKE_SOURCE_DIR}/Logger")
+endif()
+
 if(NOT TARGET CommonUtils)
 	execute_process(COMMAND git clone https://github.com/sumitdhyani/CommonUtils.git "${CMAKE_SOURCE_DIR}/CommonUtils")
 endif()
@@ -27,12 +31,12 @@ endif()
 if("${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_SOURCE_DIR}")
 	add_subdirectory(GenericServerAndClient)	
 	add_subdirectory(MTTools)
-	add_subdirectory(CommonUtils)	
-
+	add_subdirectory(CommonUtils)
+	add_subdirectory(Logger)
 endif()
 
 project(SuperRepo)
 add_executable("${PROJECT_NAME}" BuildAll.cpp)
-add_dependencies("${PROJECT_NAME}" GenericServerAndClient MTTools CommonUtils)
+add_dependencies("${PROJECT_NAME}" GenericServerAndClient MTTools CommonUtils Logger)
 #Needed for quaified paths, for protejects which have external dependencies
 target_include_directories("${PROJECT_NAME}" PUBLIC "${CMAKE_SOURCE_DIR}")
