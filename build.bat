@@ -1,6 +1,8 @@
-mkdir build
-cd build
-cmake ..
-msbuild SuperRepo.sln /p:Configuration=Release
-msbuild SuperRepo.sln /p:Configuration=Debug
+set configuration=Debug
+set dir=build_win_%configuration%
+mkdir %dir%
+cd %dir%
+set platform=x64
+cmake .. -DCMAKE_BUILD_TYPE=%configuration% -DCMAKE_GENERATOR_PLATFORM=%platform%
+msbuild SuperRepo.sln /property:Configuration=%configuration% /property:Platform=%platform%
 pause
